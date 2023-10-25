@@ -34,6 +34,14 @@ def afficher_taches():
         taches_combobox['values'] = [f"Tâche : {tache} - Date : {date}" for tache, date in data.items()]
 
 
+##################################################
+def supprimer_tache():
+    selected_index = listbox.curselection()
+    if selected_index:
+        index = int(selected_index[0])
+        listbox.delete(index)
+        del tache[index]
+        enregistrer_donnees()
 
 
 
@@ -54,7 +62,11 @@ terminer_button = tk.Button(app, text="Tâche terminée", font=("Helvetica", 16)
 terminer_button.pack()
 taches_combobox = ttk.Combobox(app, font=("Helvetica", 14), width=50)
 taches_combobox.pack()
-
+###################################################
+delete_button_tache = tk.Button(app, text="Supprimer la tâche sélectionnée", command=supprimer_tache)
+delete_button_tache.pack()
+listbox = tk.Listbox(app, selectmode=tk.SINGLE, height=10, width=40)
+listbox.pack(pady=10)
 
 
 
@@ -68,6 +80,7 @@ def delete_all_data(choice):
         print("Toutes les données ont été supprimées !")
     elif choice == 'false':
         print("Aucune donnée n'a été supprimée !")
+
 
 # ~~ Utilisation de nos fonctions ~~
 
