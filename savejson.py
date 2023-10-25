@@ -10,22 +10,22 @@ def sauvegarder_taches():
 def charger_taches():
     try:
         with open("database.json", "r") as fichier:
-            tasks = json.load(fichier)
-            return tasks
+            taches = json.load(fichier)
+            return taches
     except FileNotFoundError:
         return []
 
 # Fonction pour ajouter une tâche
-def add_task():
-    task_description = entry.get()
-    if task_description:
-        tasks.append({"description": task_description, "completed": False})
-        listbox.insert(tk.END, task_description)
+def ajouter_taches():
+    description_tache = entry.get()
+    if description_tache:
+        tasks.append({"description": description_tache, "completed": False})
+        listbox.insert(tk.END, description_tache)
         entry.delete(0, tk.END)
         sauvegarder_taches()
 
 # Fonction pour marquer une tâche comme terminée
-def mark_task_completed():
+def taches_terminer():
     selected_index = listbox.curselection()
     if selected_index:
         index = int(selected_index[0])
@@ -34,7 +34,7 @@ def mark_task_completed():
         sauvegarder_taches()
 
 # Fonction pour supprimer une tâche
-def delete_task():
+def suppression_taches():
     selected_index = listbox.curselection()
     if selected_index:
         index = int(selected_index[0])
@@ -53,22 +53,22 @@ tasks = charger_taches()
 entry = tk.Entry(app, width=40)
 entry.pack(pady=10)
 
-add_button = tk.Button(app, text="Ajouter une tâche", command=add_task)
+add_button = tk.Button(app, text="Ajouter une tâche", command=ajouter_taches)
 add_button.pack()
 
 listbox = tk.Listbox(app, selectmode=tk.SINGLE, height=10, width=40)
 listbox.pack(pady=10)
 
-mark_completed_button = tk.Button(app, text="Marquer comme terminée", command=mark_task_completed)
+mark_completed_button = tk.Button(app, text="Marquer comme terminée", command=taches_terminer)
 mark_completed_button.pack()
 
-delete_button = tk.Button(app, text="Supprimer la tâche", command=delete_task)
+delete_button = tk.Button(app, text="Supprimer la tâche", command=suppression_taches)
 delete_button.pack()
 
 # Remplissage de la liste des tâches depuis la sauvegarde
 for task in tasks:
     listbox.insert(tk.END, task["description"])
-    if task["completed"]:
+    if task["completer"]:
         index = tasks.index(task)
         listbox.itemconfig(index, {'bg': 'light green'})
 
