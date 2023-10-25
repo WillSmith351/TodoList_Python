@@ -45,17 +45,6 @@ def delete_all_data(choice):
 
 # ~~ Utilisation de nos fonctions ~~
 
-delete_all_data('true')
-
-
-taches_label = tk.Label(app, text="Tâches à faire", font=("Helvetica", 18), fg="blue", bg="lightgray")
-taches_label.pack()
-
-taches_entry = tk.Entry(app, font=("Helvetica", 22))
-taches_entry.pack()
-
-valider_button = tk.Button(app, height=2, width=10, text="Enregistrer", command='getEntry')
-valider_button.pack()
 
 # Configuration de la fenêtre.
 app.geometry('1920x1080')
