@@ -1,15 +1,24 @@
 import tkinter as tk
+import json
+import re
 
 # Création de l'interface graphique.
 app = tk.Tk()
-app.title("Notre To-Do List !")
+app.title('To-Do List')
 
+# Création du fichier JSON
+fichier_json = 'database.json'
 
 # Ajouter une tâche
 taches_label = tk.Label(app, text="Tâches à faire", font=("Helvetica", 18), fg="blue")
 taches_label.pack()
 taches_entry = tk.Entry(app, font=("Helvetica", 22), width=30)
 taches_entry.pack()
+
+# Fonction de validation pour la date d'échéance
+def validate_date(P):
+    # Vérifie si la date est au format "jj/mm/aaaa" (jour/mois/année)
+    return re.match(r'^\d{2}/\d{2}/\d{4}$', P) is not None
 
 #Ajouter une date d'échéance pour la tâche
 date_label = tk.Label(app, text="Date d'échéance", font=("Helvetica", 18), fg="blue")
@@ -30,6 +39,29 @@ supprimer_button.pack()
 terminer_button = tk.Button(app, text="Tâche terminée", font=("Helvetica", 16), bg="white", fg="black", width=13)
 terminer_button.pack()
 
+# Suppression de toutes les données de l'utilisateur dans le fichier JSON.
+def delete_all_data(choice):
+    if choice == 'true':
+        with open(fichier_json, 'w') as fichier:
+            json.dump({}, fichier)
+        print("Toutes les données ont été supprimées !")
+    elif choice == 'false':
+        print("Aucune donnée n'a été supprimée !")
+
+
+# ~~ Utilisation de nos fonctions ~~
+
+delete_all_data('true')
+
+
+taches_label = tk.Label(app, text="Tâches à faire", font=("Helvetica", 18), fg="blue", bg="lightgray")
+taches_label.pack()
+
+taches_entry = tk.Entry(app, font=("Helvetica", 22))
+taches_entry.pack()
+
+valider_button = tk.Button(app, height=2, width=10, text="Enregistrer", command='getEntry')
+valider_button.pack()
 
 # Configuration de la fenêtre.
 app.geometry('1920x1080')
