@@ -1,8 +1,7 @@
 import tkinter as tk
 from tkinter import ttk, messagebox
 import json
-
-
+import re
 
 # Création de l'interface graphique.
 app = tk.Tk()
@@ -12,7 +11,21 @@ app.title('To-Do List')
 fichier_json = 'database.json'
 
 
+# Bouton pour supprimer toutes les données
 
+
+def supprimer_tout():
+    choice = messagebox.askyesno("Confirmation", "Voulez-vous vraiment supprimer toutes les données ?")
+    delete_all_data(choice)
+
+def delete_all_data(choice):
+    if choice:
+        with open(fichier_json, 'w') as fichier:
+            json.dump({}, fichier)
+        messagebox.showinfo("Succès", "Toutes les données ont été supprimées !")
+        afficher_taches()
+    else:
+        messagebox.showinfo("Information", "Aucune donnée n'a été supprimée !")
 
 
 def enregistrer_donnees():
@@ -33,45 +46,29 @@ def afficher_taches():
         data = json.load(fichier)
         taches_combobox['values'] = [f"Tâche : {tache} - Date : {date}" for tache, date in data.items()]
 
-
-
-
-
-# Création des labels, boutons et input.
+# Création des labels, boutons et entrées.
 taches_label = tk.Label(app, text="Tâches à faire", font=("Helvetica", 18), fg="blue")
 taches_label.pack()
 taches_entry = tk.Entry(app, font=("Helvetica", 22), width=30)
 taches_entry.pack()
+
 date_label = tk.Label(app, text="Date d'échéance (jour/mois/année)", font=("Helvetica", 18), fg="blue")
 date_label.pack()
 date_entry = tk.Entry(app, font=("Helvetica", 22), width=30)
 date_entry.pack()
+
 valider_button = tk.Button(app, text="Valider", font=("Helvetica", 16), bg="green", fg="white", width=13, command=enregistrer_donnees)
 valider_button.pack()
-supprimer_button = tk.Button(app, text="Supprimer", font=("Helvetica", 16), bg="red", fg="white", width=13)
+
+supprimer_button = tk.Button(app, text="Supprimer tout", font=("Helvetica", 16), bg="red", fg="white", width=13, command=supprimer_tout)
 supprimer_button.pack()
+
 terminer_button = tk.Button(app, text="Tâche terminée", font=("Helvetica", 16), bg="white", fg="black", width=13)
 terminer_button.pack()
+
 taches_combobox = ttk.Combobox(app, font=("Helvetica", 14), width=50)
 taches_combobox.pack()
 
-
-
-
-
-
-# Suppression de toutes les données de l'utilisateur dans le fichier JSON.
-def delete_all_data(choice):
-    if choice == 'true':
-        with open(fichier_json, 'w') as fichier:
-            json.dump({}, fichier)
-        print("Toutes les données ont été supprimées !")
-    elif choice == 'false':
-        print("Aucune donnée n'a été supprimée !")
-
-# ~~ Utilisation de nos fonctions ~~
-
-
 # Configuration de la fenêtre.
-app.geometry('1920x1080')
+app.geometry('1980x1080')
 app.mainloop()
