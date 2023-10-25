@@ -86,7 +86,7 @@ listbox = tk.Listbox(app, selectmode=tk.SINGLE, height=10, width=40)
 listbox.pack(pady=10)
 
 
-
+tache = afficher_taches()
 
 
 # Suppression de toutes les données de l'utilisateur dans le fichier JSON.
