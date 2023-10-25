@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import ttk, messagebox
 import json
-import re
+
 
 # Création de l'interface graphique.
 app = tk.Tk()
