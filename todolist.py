@@ -16,7 +16,7 @@ taches_entry = tk.Entry(app, font=("Helvetica", 22), width=30)
 taches_entry.pack()
 
 #Ajouter une date d'échéance pour la tâche
-date_label = tk.Label(app, text="Date d'échéance", font=("Helvetica", 18), fg="blue")
+date_label = tk.Label(app, text="Date d'échéance (jour/mois/année)", font=("Helvetica", 18), fg="blue")
 date_label.pack()
 date_entry = tk.Entry(app, font=("Helvetica", 22), width=30)
 date_entry.pack()
