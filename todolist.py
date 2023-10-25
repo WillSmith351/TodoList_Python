@@ -14,6 +14,7 @@ try:
 except (json.JSONDecodeError, FileNotFoundError):
     data = {}
 
+# Enregistrement des données dans le fichier JSON
 def enregistrer_donnees():
     tache = taches_entry.get()
     date = date_entry.get()
@@ -29,6 +30,7 @@ def afficher_taches():
         data = json.load(fichier)
         taches_combobox['values'] = [f"Tâche : {tache} - Date : {data[tache]['date']} - Statut : {data[tache]['status']}" for tache in data]
 
+# Suppression de toutes les données dans le fichier JSON
 def supprimer_tout():
     choice = messagebox.askyesno("Confirmation", "Voulez-vous vraiment supprimer toutes les données ?")
     delete_all_data(choice)
