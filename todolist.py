@@ -44,11 +44,15 @@ def delete_all_data(choice):
     else:
         messagebox.showinfo("Information", "Aucune donnée n'a été supprimée !")
 
-# Création des labels, boutons et input.
 taches_label = tk.Label(app, text="Tâches à faire", font=("Helvetica", 18), fg="blue")
 taches_label.pack()
 taches_entry = tk.Entry(app, font=("Helvetica", 22), width=30)
 taches_entry.pack()
+
+description_label = tk.Label(app, text="Description", font=("Helvetica", 18), fg="blue")
+description_label.pack()
+description_entry = tk.Entry(app, font=("Helvetica", 22), width=30)
+description_entry.pack()
 
 date_label = tk.Label(app, text="Date d'échéance (jour/mois/année)", font=("Helvetica", 18), fg="blue")
 date_label.pack()
