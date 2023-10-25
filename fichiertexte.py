@@ -1,13 +1,18 @@
-import tkinter as tk
 import json
 
+donnees = {
+    "nom": "jean",
+    "age": 30,
+    "ville": "Paris",
+    "emplois": ["developpeur", "analyste"]
+}
 
-# Création de l'interface graphique.
-app = tk.Tk()
-app.title('To-Do List')
-
-# Création du fichier JSON
 fichier_json = 'database.json'
+
+with open(fichier_json, 'w') as fichier:
+    json.dump(donnees, fichier, indent=4)
+
+print("Les données ont été enregistrées")
 
 # Suppression de toutes les données de l'utilisateur dans le fichier JSON.
 def delete_all_data(choice):
@@ -17,11 +22,7 @@ def delete_all_data(choice):
         print("Toutes les données ont été supprimées !")
     elif choice == 'false':
         print("Aucune donnée n'a été supprimée !")
+    else:
+        print("Aucune donnée n'a été supprimée !")
 
-# ~~ Utilisation de nos fonctions ~~
-
-delete_all_data('true')
-
-# Configuration de la fenêtre.
-app.geometry('1920x1080')
-app.mainloop()
+delete_all_data('false')
