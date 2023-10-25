@@ -74,3 +74,30 @@ for task in tasks:
 
 # Boucle principale pour la fenêtre
 app.mainloop()
+
+
+
+
+
+
+
+
+
+##################################################
+def supprimer_tache():
+    selected_index = listbox.curselection()
+    if selected_index:
+        index = int(selected_index[0])
+        listbox.delete(index)
+        del tache[index]
+        enregistrer_donnees()
+        
+        
+        
+        
+        
+        
+delete_button_tache = tk.Button(app, text="Supprimer la tâche sélectionnée", command=supprimer_tache)
+delete_button_tache.pack()
+listbox = tk.Listbox(app, selectmode=tk.SINGLE, height=10, width=40)
+listbox.pack(pady=10)
