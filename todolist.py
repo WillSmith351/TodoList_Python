@@ -17,18 +17,20 @@ except (json.JSONDecodeError, FileNotFoundError):
 # Enregistrement des données dans le fichier JSON
 def enregistrer_donnees():
     tache = taches_entry.get()
+    description = description_entry.get()  # Ajout de la description
     date = date_entry.get()
-    data[tache] = {'date': date, 'status': 'en cours'}
+    data[tache] = {'date': date, 'status': 'en cours', 'description': description}  # Ajout de la description
     with open(fichier_json, 'w') as fichier:
         json.dump(data, fichier)
     messagebox.showinfo("Succès", "Données enregistrées avec succès !")
     afficher_taches()
 
+
 # Affichage de toutes les tâches
 def afficher_taches():
     with open(fichier_json, 'r') as fichier:
         data = json.load(fichier)
-        taches_combobox['values'] = [f"Tâche : {tache} - Date : {data[tache]['date']} - Statut : {data[tache]['status']}" for tache in data]
+        taches_combobox['values'] = [f"Tâche : {tache} - Description : {data[tache]['description']} - Date : {data[tache]['date']} - Statut : {data[tache]['status']}" for tache in data]
 
 # Suppression de toutes les données dans le fichier JSON
 def supprimer_tout():
