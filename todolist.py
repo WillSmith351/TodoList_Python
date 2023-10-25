@@ -66,9 +66,6 @@ supprimer_button.pack()
 terminer_button = tk.Button(app, text="Tâche terminée", font=("Helvetica", 16), bg="white", fg="black", width=13)
 terminer_button.pack()
 
-taches_combobox = ttk.Combobox(app, font=("Helvetica", 14), width=50)
-taches_combobox.pack()
-
 # Configuration de la fenêtre.
 app.geometry('1980x1080')
 app.mainloop()
