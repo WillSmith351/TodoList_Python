@@ -82,4 +82,16 @@ app.mainloop()
 
 
 
+delete_button_tache = tk.Button(app, text="Supprimer la tâche sélectionnée", command=supprimer_tache)
+delete_button_tache.pack()
+listbox = tk.Listbox(app, selectmode=tk.SINGLE, height=10, width=40)
+listbox.pack(pady=10)
+
+
+tache = afficher_taches()
+
+
+
+
+
 
